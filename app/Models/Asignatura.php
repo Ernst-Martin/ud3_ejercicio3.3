@@ -8,8 +8,10 @@ class Asignatura extends Model
 {
     protected $fillable = ['nombre', 'descripcion'];
 
-    public function notas()
-    {
-        return $this->hasMany(Nota::class);
-    }
+    public function alumnos()
+{
+    return $this->belongsToMany(Alumno::class, 'notas')
+                ->withPivot('nota')
+                ->withTimestamps();
+}
 }
